@@ -1,0 +1,96 @@
+"""
+To-Do List CLI with JSON persistence
+Author: Muhammad Zohaib Shahid
+Features:
+ - add/view/delete/complete tasks
+ - save/load tasks to tasks.json
+ - simple priority and due date fields (optional)
+"""
+import json
+import os
+from datetime import datetime
+
+DATA_FILE = "tasks.json"
+
+def load_tasks():
+    if not os.path.exists(DATA_FILE):
+        return []
+    with open(DATA_FILE, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+def save_tasks(tasks):
+    with open(DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(tasks, f, indent=2, ensure_ascii=False)
+
+def show_tasks(tasks):
+    if not tasks:
+        print("No tasks found.")
+        return
+    print("\nYour Tasks:")
+    for i, t in enumerate(tasks, 1):
+        status = "Done" if t.get("done") else "Pending"
+        pr = t.get("priority", "")
+        due = t.get("due", "")
+        print(f"{i}. [{status}] {t['title']} {('- priority:'+pr) if pr else ''} {('- due:'+due) if due else ''}")
+
+def add_task(tasks):
+    title = input("Task title: ").strip()
+    if not title:
+        print("Empty task not added.")
+        return
+    priority = input("Priority (low/med/high) [optional]: ").strip()
+    due = input("Due date (YYYY-MM-DD) [optional]: ").strip()
+    task = {
+        "title": title,
+        "done": False,
+        "priority": priority,
+        "due": due,
+        "created": datetime.now().isoformat()
+    }
+    tasks.append(task)
+    save_tasks(tasks)
+    print("Task added ✅")
+
+def delete_task(tasks):
+    show_tasks(tasks)
+    try:
+        num = int(input("Enter task number to delete: "))
+        removed = tasks.pop(num-1)
+        save_tasks(tasks)
+        print(f"Deleted: {removed['title']}")
+    except Exception:
+        print("Invalid number.")
+
+def mark_done(tasks):
+    show_tasks(tasks)
+    try:
+        num = int(input("Enter task number to mark as done: "))
+        tasks[num-1]["done"] = True
+        save_tasks(tasks)
+        print("Marked as done ✅")
+    except Exception:
+        print("Invalid input.")
+
+def main():
+    tasks = load_tasks()
+    while True:
+        print("\n===== TODO CLI =====")
+        print("1) Add  2) View  3) Delete  4) Mark Done  5) Exit")
+        c = input("Choose: ").strip()
+        if c == "1":
+            add_task(tasks)
+        elif c == "2":
+            show_tasks(tasks)
+        elif c == "3":
+            delete_task(tasks)
+        elif c == "4":
+            mark_done(tasks)
+        elif c == "5":
+            print("Bye!")
+            break
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
+
