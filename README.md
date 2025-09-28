@@ -23,7 +23,7 @@ It allows users to **add, view, delete, and mark tasks as completed** — a perf
 
   **CODE**
 <img width="1919" height="1014" alt="Screenshot 2025-09-27 230536" src="https://github.com/user-attachments/assets/380738f2-66b2-44bd-b8c2-355a7656c9f4" />
-<img width="1914" height="1008" alt="Screenshot 2025-09-27 230617" src="https://github.com/user-attachments/assets/52449866-c499-4db0-88d9-46dc04465455" />
+<img width="1914" height="969" alt="Screenshot 2025-09-27 230617" src="https://github.com/user-attachments/assets/e94e1655-7d4c-4f53-9791-c5415e3d72b3" />
 
 
      **OUTPUT**
