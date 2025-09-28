@@ -1,0 +1,75 @@
+"""
+Calculator Console App
+Author: Muhammad Zohaib Shahid
+Features:
+ - addition, subtraction, multiplication, division
+ - history (last 10 calculations)
+ - graceful input handling
+"""
+from collections import deque
+
+history = deque(maxlen=10)  # keep last 10 results
+
+def add(x, y): return x + y
+def subtract(x, y): return x - y
+def multiply(x, y): return x * y
+def divide(x, y):
+    if y == 0:
+        return "Error: division by zero"
+    return x / y
+
+ops = {
+    "1": ("+", add),
+    "2": ("-", subtract),
+    "3": ("*", multiply),
+    "4": ("/", divide)
+}
+
+def show_menu():
+    print("\n=== PY MINI CALC ===")
+    print("1) Add  2) Subtract  3) Multiply  4) Divide")
+    print("h) History   m) Use memory value   q) Quit")
+
+memory = 0.0
+
+while True:
+    show_menu()
+    choice = input("Choose option: ").strip().lower()
+
+    if choice == 'q':
+        print("Goodbye 👋")
+        break
+    if choice == 'h':
+        if not history:
+            print("No history yet.")
+        else:
+            print("Last calculations:")
+            for item in history:
+                print(item)
+        continue
+    if choice == 'm':
+        print(f"Memory value = {memory}")
+        continue
+
+    if choice in ops:
+        symbol, func = ops[choice]
+        try:
+            a = input("First number (or 'm' for memory): ").strip()
+            a = memory if a.lower() == 'm' else float(a)
+            b = input("Second number (or 'm' for memory): ").strip()
+            b = memory if b.lower() == 'm' else float(b)
+        except ValueError:
+            print("Please enter a valid number!")
+            continue
+
+        result = func(a, b)
+        print(f"Result: {a} {symbol} {b} = {result}")
+        history.appendleft(f"{a} {symbol} {b} = {result}")
+
+        # offer to save result to memory
+        save = input("Save result to memory? (y/N): ").strip().lower()
+        if save == 'y' and isinstance(result, (int, float)):
+            memory = float(result)
+            print("Saved to memory.")
+        continue
+    print("Invalid choice — try again.")
