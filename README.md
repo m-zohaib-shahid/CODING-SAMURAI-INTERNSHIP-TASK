@@ -25,7 +25,7 @@ It allows users to **add, view, delete, and mark tasks as completed** — a perf
   <img width="1919" height="1079" alt="Screenshot 2025-09-27 230536" src="https://github.com/user-attachments/assets/79e2c2cc-af15-4642-a429-e91552bc8493" />
   <img width="1919" height="1078" alt="Screenshot 2025-09-27 230617" src="https://github.com/user-attachments/assets/9d841438-978a-4321-8bce-1add516236af" /> 
 
-**OUTPUT**
+     **OUTPUT**
 
 <img width="1898" height="900" alt="image" src="https://github.com/user-attachments/assets/cdb2f317-0d45-44ec-a8d7-7be999a332a3" />
 
