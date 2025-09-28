@@ -30,6 +30,8 @@ It allows users to **add, view, delete, and mark tasks as completed** — a perf
 
 <img width="1898" height="900" alt="image" src="https://github.com/user-attachments/assets/cdb2f317-0d45-44ec-a8d7-7be999a332a3" />
 
+
+
 ✅ Python Calculator – Console Version
 
 ### 📌 Overview
